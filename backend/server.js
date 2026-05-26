@@ -2,9 +2,9 @@ const express=require('express');
 
 const cors=require('cors');
 
-const userRoutes=require('./routes/userroutes');
+const userRoutes=require('./routes/userRoutes');
 
-const authRoutes=require('./routes/authroutes');
+const authRoutes=require('./routes/authRoutes');
 
 const connectDB=require('./config/db');
 
