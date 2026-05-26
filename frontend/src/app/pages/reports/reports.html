@@ -1,0 +1,213 @@
+<div class="reports-page">
+
+    
+
+    <div class="top-bar">
+
+        <button
+            class="back-btn"
+            (click)="goDashboard()">
+
+            ← Dashboard
+
+        </button>
+
+        <div class="report-badge">
+
+            📊 Reports Center
+
+        </div>
+
+    </div>
+
+    
+
+    <div class="hero-card">
+
+        <div>
+
+            <h1>
+
+                Reports & Analytics
+
+            </h1>
+
+            <p>
+
+                Monitor platform reports and system activity
+
+            </p>
+
+        </div>
+
+        <div class="hero-icon">
+
+            📈
+
+        </div>
+
+    </div>
+
+    
+
+    <div class="stats-grid">
+
+        <div class="stat-card blue">
+
+            <h3>
+
+                Total Reports
+
+            </h3>
+
+            <h1>
+
+                12
+
+            </h1>
+
+        </div>
+
+        <div class="stat-card green">
+
+            <h3>
+
+                Generated
+
+            </h3>
+
+            <h1>
+
+                9
+
+            </h1>
+
+        </div>
+
+        <div class="stat-card purple">
+
+            <h3>
+
+                Pending
+
+            </h3>
+
+            <h1>
+
+                3
+
+            </h1>
+
+        </div>
+
+    </div>
+
+    
+
+    <div class="table-card">
+
+        <div class="table-header">
+
+            <h2>
+
+                Recent Reports
+
+            </h2>
+
+            <button
+                class="download-btn"
+                (click)="downloadAll()">
+
+                ⬇ Download All
+
+            </button>
+
+        </div>
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+
+                        Report Name
+
+                    </th>
+
+                    <th>
+
+                        Category
+
+                    </th>
+
+                    <th>
+
+                        Status
+
+                    </th>
+
+                    <th>
+
+                        Action
+
+                    </th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr
+                    *ngFor="let report of reports">
+
+                    <td>
+
+                        {{ report.name }}
+
+                    </td>
+
+                    <td>
+
+                        {{ report.type }}
+
+                    </td>
+
+                    <td>
+
+                        <span
+                            class="status"
+                            [ngClass]="{
+                                'generated':report.status==='Generated',
+                                'pending':report.status==='Pending'
+                            }">
+
+                            {{ report.status }}
+
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        <button
+                            class="view-btn"
+                            (click)="viewReport(report)">
+
+                            View
+
+                        </button>
+
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>

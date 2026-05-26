@@ -1,0 +1,15 @@
+
+node_modules
+
+
+.angular
+dist
+
+
+.env
+
+
+.vscode
+
+
+npm-debug.log

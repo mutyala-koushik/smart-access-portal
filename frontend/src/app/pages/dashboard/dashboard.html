@@ -1,0 +1,347 @@
+
+
+<div
+    class="toast-success"
+    *ngIf="successMessage">
+
+    ✅ {{ successMessage }}
+
+</div>
+
+
+<div
+    class="toast-success"
+    *ngIf="successMessage">
+
+    <span class="toast-icon">
+
+        ✅
+
+    </span>
+
+    <span>
+
+        {{ successMessage }}
+
+    </span>
+
+</div><div class="dashboard-layout">
+
+    
+
+    <div class="sidebar">
+
+        <div>
+
+            <h1 class="logo">
+
+                Portal
+
+            </h1>
+
+            <div class="menu">
+
+                <a
+                    routerLink="/dashboard"
+                    routerLinkActive="active-link">
+
+                    📊 Dashboard
+
+                </a>
+
+                <a
+                    routerLink="/users"
+                    routerLinkActive="active-link">
+
+                    👥 Users
+
+                </a>
+
+                <a
+                    routerLink="/reports"
+                    routerLinkActive="active-link">
+
+                    📝 Reports
+
+                </a>
+
+                <a
+                    routerLink="/settings"
+                    routerLinkActive="active-link">
+
+                    ⚙️ Settings
+
+                </a>
+
+            </div>
+
+        </div>
+
+        <button
+            class="logout-btn"
+            (click)="logout()">
+
+            Logout
+
+        </button>
+
+    </div>
+
+    
+
+    <div class="dashboard-page">
+
+        <div class="top-bar">
+
+    
+
+    <div class="live-clock">
+
+        <h3>
+
+            🕒 {{ currentTime }}
+
+        </h3>
+
+        <p>
+
+            {{ currentDate }}
+
+        </p>
+
+    </div>
+
+    
+
+    <button
+        class="dark-btn"
+        (click)="toggleDarkMode()">
+
+        🌙 Dark Mode
+
+    </button>
+
+</div>
+
+        
+
+        <div class="welcome-card">
+
+            <div>
+
+                <h1>
+
+                    Welcome Admin 👋
+
+                </h1>
+
+                <p>
+
+                    Monitor analytics and manage your platform efficiently
+
+                </p>
+
+            </div>
+
+            <div class="portal-badge">
+
+                🚀 Smart Access Portal
+
+            </div>
+
+        </div>
+
+        
+
+        <div
+    class="loading-box"
+    *ngIf="loading">
+
+    <div class="spinner"></div>
+
+    <p>
+
+        Loading dashboard data...
+
+    </p>
+
+</div>
+        
+
+        <div *ngIf="!loading">
+
+            <!-- STATS -->
+
+            <div class="stats-grid">
+
+                <div class="stat-card blue-card">
+
+                    <h3>
+
+                        Total Users
+
+                    </h3>
+
+                    <h1>
+
+                        {{ totalUsers }}
+
+                    </h1>
+
+                </div>
+
+                <div class="stat-card green-card">
+
+                    <h3>
+
+                        Admins
+
+                    </h3>
+
+                    <h1>
+
+                        {{ adminUsers }}
+
+                    </h1>
+
+                </div>
+
+                <div class="stat-card purple-card">
+
+                    <h3>
+
+                        General Users
+
+                    </h3>
+
+                    <h1>
+
+                        {{ generalUsers }}
+
+                    </h1>
+
+                </div>
+
+            </div>
+
+            
+
+            <div class="analytics-grid">
+
+                <div class="analytics-card">
+
+                    <h2>
+
+                        User Analytics
+
+                    </h2>
+
+                    <div class="chart-container">
+
+                        <canvas id="myChart"></canvas>
+
+                    </div>
+
+                </div>
+
+                
+
+                <div class="quick-stats">
+
+                    <h2>
+
+                        Quick Stats
+
+                    </h2>
+
+                    <div class="progress-item">
+
+                        <div class="progress-text">
+
+                            <span>
+
+                                Active Users
+
+                            </span>
+
+                            <span>
+
+                                92%
+
+                            </span>
+
+                        </div>
+
+                        <div class="progress-bar">
+
+                            <div class="progress-fill blue-fill"></div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="progress-item">
+
+                        <div class="progress-text">
+
+                            <span>
+
+                                Admin Access
+
+                            </span>
+
+                            <span>
+
+                                {{ adminPercentage }}%
+
+                            </span>
+
+                        </div>
+
+                        <div class="progress-bar">
+
+                            <div
+                                class="progress-fill green-fill"
+                                [style.width.%]="adminPercentage">
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="progress-item">
+
+                        <div class="progress-text">
+
+                            <span>
+
+                                System Health
+
+                            </span>
+
+                            <span>
+
+                                98%
+
+                            </span>
+
+                        </div>
+
+                        <div class="progress-bar">
+
+                            <div class="progress-fill purple-fill"></div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

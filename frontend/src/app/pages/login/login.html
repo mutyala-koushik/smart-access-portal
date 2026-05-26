@@ -1,0 +1,183 @@
+
+
+
+
+<div class="login-page">
+
+    
+
+    <div class="left-panel">
+
+        <div class="overlay"></div>
+
+        <div class="left-content">
+
+            <h1>
+
+                Smart Access Portal
+
+            </h1>
+
+            <p>
+
+                Secure Role Based Access Management System
+
+            </p>
+
+            <div class="features">
+
+                <div>
+
+                    ✅ Admin Dashboard
+
+                </div>
+
+                <div>
+
+                    ✅ User Management
+
+                </div>
+
+                <div>
+
+                    ✅ Analytics & Reports
+
+                </div>
+
+                <div>
+
+                    ✅ Secure Login System
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- RIGHT SIDE -->
+
+    <div class="right-panel">
+
+        <div class="login-card">
+
+            <div class="login-top">
+
+                <div class="logo-circle">
+
+                    🔐
+
+                </div>
+
+                <h1>
+
+                    Welcome Back
+
+                </h1>
+
+                <p>
+
+                    Login to continue
+
+                </p>
+
+            </div>
+
+            <form
+                (ngSubmit)="onLogin()">
+
+                <!-- USERNAME -->
+
+                <div class="input-group">
+
+                    <label>
+
+                        Username
+
+                    </label>
+
+                    <input
+                        type="text"
+                        [(ngModel)]="username"
+                        name="username"
+                        placeholder="Enter username">
+
+                </div>
+
+                <!-- PASSWORD -->
+
+                <div class="input-group">
+
+                    <label>
+
+                        Password
+
+                    </label>
+
+                    <input
+                        type="password"
+                        [(ngModel)]="password"
+                        name="password"
+                        placeholder="Enter password">
+
+                </div>
+
+                <!-- ROLE -->
+
+                <div class="input-group">
+
+                    <label>
+
+                        Select Role
+
+                    </label>
+
+                    <select
+                        [(ngModel)]="role"
+                        name="role">
+
+                        <option>
+
+                            Admin
+
+                        </option>
+
+                        <option>
+
+                            General User
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <!-- ERROR MESSAGE -->
+
+                <div
+                    *ngIf="errorMessage"
+                    class="error-msg">
+
+                    {{ errorMessage }}
+
+                </div>
+
+                <!-- LOGIN BUTTON -->
+
+                <button
+                    type="submit"
+                    class="login-btn"
+                    [disabled]="loading">
+
+                    {{ loading ? 'Loading...' : 'Login' }}
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
