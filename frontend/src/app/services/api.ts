@@ -11,7 +11,7 @@ import {
 
 export class Api {
 
-  baseUrl='http://localhost:3000';
+  baseUrl='https://smart-access-portal.onrender.com';
 
   constructor(
     private http:HttpClient

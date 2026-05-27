@@ -6,7 +6,7 @@ const connectDB=async()=>{
 
     await mongoose.connect(
 
-      'mongodb://127.0.0.1:27017/smart-access-portal'
+      'mongodb+srv://admin:admin123@cluster0.6rhxpd3.mongodb.net/?appName=Cluster0'
 
     );
 

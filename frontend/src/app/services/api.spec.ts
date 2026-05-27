@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 
 export class ApiService {
 
-  baseUrl = 'http://localhost:5000';
+  baseUrl = 'https://smart-access-portal.onrender.com';
 
   constructor(
     private http: HttpClient
