@@ -23,4 +23,19 @@ export class ApiService {
 
   }
 
+  getUsers() {
+
+    const token = localStorage.getItem('token');
+
+    return this.http.get(
+      `${this.baseUrl}/users`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
+    );
+
+  }
+
 }
