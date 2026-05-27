@@ -16,7 +16,12 @@ const app=express();
 
 
 
-app.use(cors());
+app.use(cors({
+  origin: [
+    'https://candid-cucurucho-b6f089.netlify.app',
+    'https://neon-selkie-4cda25.netlify.app'
+  ]
+}));
 
 app.use(express.json());
 
