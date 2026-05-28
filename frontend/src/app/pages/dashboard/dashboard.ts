@@ -51,11 +51,8 @@ implements OnInit,AfterViewInit {
 
   users:any[]=[];
 
-  
-
   successMessage:string='';
 
- 
   currentTime:string='';
 
   currentDate:string='';
@@ -69,8 +66,6 @@ implements OnInit,AfterViewInit {
   adminPercentage:number=0;
 
   darkMode:boolean=false;
-
-  
 
   loading:boolean=true;
 
@@ -86,15 +81,10 @@ implements OnInit,AfterViewInit {
 
   ngOnInit(){
 
-    
-
     this.loadUsers();
-
-    
 
     this.startClock();
 
-    
     const loginSuccess=
 
       localStorage.getItem(
@@ -130,48 +120,47 @@ implements OnInit,AfterViewInit {
 
   }
 
-  
+  /* FIXED USERS API */
+
   loadUsers(){
 
-    this.loading=true;
+    this.loading = true;
 
     this.api.getUsers().subscribe({
 
       next:(res:any)=>{
 
-        
+        console.log(res);
 
-        this.users=[...res];
+        /* FIXED RESPONSE */
 
-        
-        this.totalUsers=
-          this.users.length;
+        this.users = res.users || [];
 
-        this.adminUsers=
-          this.users.filter(
-            user=>user.role==='Admin'
-          ).length;
+        this.totalUsers = res.totalUsers || 0;
 
-        this.generalUsers=
-          this.users.filter(
-            user=>user.role==='General User'
-          ).length;
+        this.adminUsers = res.admins || 0;
 
-        this.adminPercentage=
-          Math.round(
+        this.generalUsers = res.generalUsers || 0;
 
-            (this.adminUsers/
-            this.totalUsers)*100
+        /* PERCENTAGE */
+
+        if(this.totalUsers > 0){
+
+          this.adminPercentage = Math.round(
+
+            (this.adminUsers / this.totalUsers) * 100
 
           );
 
-        
+        }else{
 
-        this.loading=false;
+          this.adminPercentage = 0;
+
+        }
+
+        this.loading = false;
 
         this.cdr.detectChanges();
-
-        
 
         setTimeout(()=>{
 
@@ -185,15 +174,13 @@ implements OnInit,AfterViewInit {
 
         console.log(err);
 
-        this.loading=false;
+        this.loading = false;
 
       }
 
     });
 
   }
-
-  
 
   startClock(){
 
@@ -225,8 +212,6 @@ implements OnInit,AfterViewInit {
     },1000);
 
   }
-
-  
 
   loadChart(){
 
@@ -302,8 +287,6 @@ implements OnInit,AfterViewInit {
 
   }
 
-  
-
   toggleDarkMode(){
 
     this.darkMode=!this.darkMode;
@@ -313,8 +296,6 @@ implements OnInit,AfterViewInit {
     );
 
   }
-
-  
 
   logout(){
 
