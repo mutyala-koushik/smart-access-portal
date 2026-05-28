@@ -30,20 +30,14 @@ Chart.register(
 );
 
 @Component({
-
   selector:'app-dashboard',
-
   standalone:true,
-
   imports:[
     CommonModule,
     RouterLink
   ],
-
   templateUrl:'./dashboard.html',
-
   styleUrls:['./dashboard.css']
-
 })
 
 export class Dashboard
@@ -70,13 +64,9 @@ implements OnInit,AfterViewInit {
   loading:boolean=true;
 
   constructor(
-
     private router:Router,
-
     private api:Api,
-
     private cdr:ChangeDetectorRef
-
   ){}
 
   ngOnInit(){
@@ -86,7 +76,6 @@ implements OnInit,AfterViewInit {
     this.startClock();
 
     const loginSuccess=
-
       localStorage.getItem(
         'loginSuccess'
       );
@@ -116,7 +105,7 @@ implements OnInit,AfterViewInit {
 
       this.loadChart();
 
-    },200);
+    },300);
 
   }
 
@@ -132,25 +121,52 @@ implements OnInit,AfterViewInit {
 
         console.log("API RESPONSE:",res);
 
-        /* FIXED RESPONSE */
+        /* HANDLE BOTH ARRAY + OBJECT */
 
-        this.users = res.users || [];
+        if(Array.isArray(res)){
 
-        this.totalUsers = res.totalUsers || 0;
+          this.users = res;
 
-        this.adminUsers = res.admins || 0;
+          this.totalUsers = res.length;
 
-        this.generalUsers = res.generalUsers || 0;
+          this.adminUsers =
+            res.filter(
+              (user:any)=>
+              user.role==='Admin'
+            ).length;
+
+          this.generalUsers =
+            res.filter(
+              (user:any)=>
+              user.role==='General User'
+            ).length;
+
+        }else{
+
+          this.users = res.users || [];
+
+          this.totalUsers =
+            res.totalUsers || 0;
+
+          this.adminUsers =
+            res.admins || 0;
+
+          this.generalUsers =
+            res.generalUsers || 0;
+
+        }
 
         /* SAFE PERCENTAGE */
 
         if(this.totalUsers > 0){
 
-          this.adminPercentage = Math.round(
+          this.adminPercentage =
+            Math.round(
 
-            (this.adminUsers / this.totalUsers) * 100
+              (this.adminUsers /
+              this.totalUsers) * 100
 
-          );
+            );
 
         }else{
 
@@ -166,13 +182,16 @@ implements OnInit,AfterViewInit {
 
           this.loadChart();
 
-        },200);
+        },300);
 
       },
 
       error:(err:any)=>{
 
-        console.log("USERS ERROR:",err);
+        console.log(
+          "USERS ERROR:",
+          err
+        );
 
         this.loading = false;
 
