@@ -1,113 +1,34 @@
-const express=require('express');
+router.post('/login', async (req, res) => {
 
-const router=express.Router();
+  const { username, password, role } = req.body;
 
-const jwt=require('jsonwebtoken');
+  try {
 
+    const user = await User.findOne({
+      email: username,
+      password,
+      role
+    });
 
+    if (!user) {
+      return res.status(401).json({
+        success: false,
+        message: "Invalid credentials"
+      });
+    }
 
-router.post('/login',(req,res)=>{
+    res.json({
+      success: true,
+      user
+    });
 
-  const{
-    username,
-    password,
-    role
-  }=req.body;
+  } catch (error) {
 
-  
-
-  if(
-
-    username==='admin' &&
-    password==='admin123' &&
-    role==='Admin'
-
-  ){
-
-    const token=
-
-      jwt.sign(
-
-        {
-          username:'admin',
-          role:'Admin'
-        },
-
-        'mysupersecretkey',
-
-        {
-          expiresIn:'1h'
-        }
-
-      );
-
-    return res.json({
-
-      success:true,
-
-      token,
-
-      user:{
-        username:'admin',
-        role:'Admin'
-      }
-
+    res.status(500).json({
+      success: false,
+      message: error.message
     });
 
   }
-
-  
-
-  if(
-
-    username==='user' &&
-    password==='user123' &&
-    role==='General User'
-
-  ){
-
-    const token=
-
-      jwt.sign(
-
-        {
-          username:'user',
-          role:'General User'
-        },
-
-        'mysupersecretkey',
-
-        {
-          expiresIn:'1h'
-        }
-
-      );
-
-    return res.json({
-
-      success:true,
-
-      token,
-
-      user:{
-        username:'user',
-        role:'General User'
-      }
-
-    });
-
-  }
-
-  
-
-  res.status(401).json({
-
-    success:false,
-
-    message:'Invalid credentials'
-
-  });
 
 });
-
-module.exports=router;
