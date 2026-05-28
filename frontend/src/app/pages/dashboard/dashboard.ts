@@ -120,7 +120,7 @@ implements OnInit,AfterViewInit {
 
   }
 
-  /* FIXED USERS API */
+  /* LOAD USERS */
 
   loadUsers(){
 
@@ -130,7 +130,7 @@ implements OnInit,AfterViewInit {
 
       next:(res:any)=>{
 
-        console.log(res);
+        console.log("API RESPONSE:",res);
 
         /* FIXED RESPONSE */
 
@@ -142,7 +142,7 @@ implements OnInit,AfterViewInit {
 
         this.generalUsers = res.generalUsers || 0;
 
-        /* PERCENTAGE */
+        /* SAFE PERCENTAGE */
 
         if(this.totalUsers > 0){
 
@@ -166,13 +166,13 @@ implements OnInit,AfterViewInit {
 
           this.loadChart();
 
-        },100);
+        },200);
 
       },
 
       error:(err:any)=>{
 
-        console.log(err);
+        console.log("USERS ERROR:",err);
 
         this.loading = false;
 
@@ -181,6 +181,8 @@ implements OnInit,AfterViewInit {
     });
 
   }
+
+  /* CLOCK */
 
   startClock(){
 
@@ -212,6 +214,8 @@ implements OnInit,AfterViewInit {
     },1000);
 
   }
+
+  /* CHART */
 
   loadChart(){
 
@@ -287,6 +291,8 @@ implements OnInit,AfterViewInit {
 
   }
 
+  /* DARK MODE */
+
   toggleDarkMode(){
 
     this.darkMode=!this.darkMode;
@@ -296,6 +302,8 @@ implements OnInit,AfterViewInit {
     );
 
   }
+
+  /* LOGOUT */
 
   logout(){
 
