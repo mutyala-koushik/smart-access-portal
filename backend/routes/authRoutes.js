@@ -1,3 +1,9 @@
+const express = require('express');
+
+const router = express.Router();
+
+const User = require('../models/User');
+
 router.post('/login', async (req, res) => {
 
   const { username, password, role } = req.body;
@@ -32,3 +38,5 @@ router.post('/login', async (req, res) => {
   }
 
 });
+
+module.exports = router;
