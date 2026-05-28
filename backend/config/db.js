@@ -3,17 +3,16 @@ const mongoose = require("mongoose");
 const connectDB = async () => {
   try {
 
-    const conn = await mongoose.connect(
+    await mongoose.connect(
       "mongodb+srv://admin1:cQnIvf9BTxZ2g47b@cluster0.6rhxpd3.mongodb.net/smart-access-portal?retryWrites=true&w=majority"
     );
 
-    console.log(`MongoDB Connected: ${conn.connection.host}`);
+    console.log("MongoDB Connected 😎");
 
   } catch (error) {
 
-    console.error("MongoDB Error:", error.message);
+    console.log("Mongo Error:", error);
 
-    process.exit(1);
   }
 };
 
